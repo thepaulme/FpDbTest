@@ -9,7 +9,7 @@ use mysqli;
 
 class Database implements DatabaseInterface
 {
-    private mysqli $mysqli;
+    public mysqli $mysqli;
 
     private $specialMean = 'SKIP';
 
@@ -74,8 +74,7 @@ class Database implements DatabaseInterface
                 $value = 'NULL';
                 break;
             case is_string($arg):
-                $value = "'" . $arg . "'";
-                $this->mysqli->real_escape_string($value);
+                $value = "'" . $this->mysqli->real_escape_string($arg) . "'";
                 break;
             case is_int($arg):
                 $value = (int) $arg;
