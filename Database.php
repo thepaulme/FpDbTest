@@ -74,8 +74,8 @@ class Database implements DatabaseInterface
                 $value = 'NULL';
                 break;
             case is_string($arg):
-                $value = '\'' . $arg . '\'';
-                // $value = $this->mysqli->real_escape_string($value);
+                $value = "'" . $arg . "'";
+                $this->mysqli->real_escape_string($value);
                 break;
             case is_int($arg):
                 $value = (int) $arg;
